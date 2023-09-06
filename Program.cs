@@ -10,7 +10,7 @@ string [] CreateArray(int size)
 
     for (int i = 0; i < size; i++)
     {
-        array [i] = Console.ReadLine();
+        array [i] = Console.ReadLine() ?? "";
     }
 
     return array; 
@@ -18,6 +18,7 @@ string [] CreateArray(int size)
 
 void ShowArray(string [] array)
 {
+    Console.WriteLine("Result: ");
     for (int i = 0; i < array.GetLength(0); i++)
     {
         Console.WriteLine(array[i]);
@@ -28,15 +29,14 @@ string [] CreateNewArray(string [] array, int size)
 {
     string [] new_array = new string [size];
     
-    for (int j = 0; j < size; j++)
+    int j = 0;
+        
+    for (int i = 0; i < array.GetLength(0) && j < size; i++)
     {
-        for (int i = 0; i < array.GetLength(0); i++)
+        if (array[i].Length <= 3)
         {
-            if (array[i].Length <= 3)
-            {
-                new_array [j] = array [i];
-                j++;
-            }
+            new_array[j] = array[i];
+            j++;
         }
     }
 
@@ -58,7 +58,6 @@ int GetSizeNewArray(string [] array)
 }
 
 int size = 0;
-
 Console.Write("Enter the array size: ");
 size = Convert.ToInt32(Console.ReadLine());
 string [] arr = new string [size];
